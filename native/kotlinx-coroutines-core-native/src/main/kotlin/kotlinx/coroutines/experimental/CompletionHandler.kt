@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package kotlinx.coroutines.experimental.internal
+package kotlinx.coroutines.experimental
 
-/**
- * Closeable entity.
- * @suppress **Deprecated**
- */
-@Deprecated("No replacement, see specific use")
-public actual interface Closeable {
-    public actual fun close()
+import kotlinx.coroutines.experimental.internal.*
+
+internal actual abstract class CompletionHandlerNode actual constructor() : LockFreeLinkedListNode(), CompletionHandler {
+    actual inline val asHandler: CompletionHandler get() = this
+    actual abstract override fun invoke(cause: Throwable?)
 }
+
+@Suppress("NOTHING_TO_INLINE")
+internal actual inline fun CompletionHandler.invokeIt(cause: Throwable?) = invoke(cause)

@@ -494,9 +494,7 @@ public object NonDisposableHandle : DisposableHandle {
  * @param active when `true` the job is created in _active_ state, when `false` in _new_ state. See [Job] for details.
  * @suppress **This is unstable API and it is subject to change.**
  */
-internal open class JobSupport constructor(active: Boolean) : Job, SelectClause0 {
-    final override val key: CoroutineContext.Key<*> get() = Job
-
+internal open class JobSupport constructor(active: Boolean) : JobBase(), SelectClause0 {
     /*
        === Internal states ===
 
