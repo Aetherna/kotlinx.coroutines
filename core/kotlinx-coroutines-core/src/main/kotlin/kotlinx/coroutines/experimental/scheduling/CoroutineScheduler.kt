@@ -590,7 +590,7 @@ internal class CoroutineScheduler(
             LockSupport.parkNanos(BLOCKING_WORKER_KEEP_ALIVE_NS)
             // Protection against spurious wakeups of parkNanos
             if (System.nanoTime() - time > BLOCKING_WORKER_KEEP_ALIVE_NS) {
-                // terminateWorker() temporary disabled
+                 terminateWorker() //     temporary disabled
             }
         }
 
